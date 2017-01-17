@@ -62,10 +62,13 @@
     <script src="js/index.js"></script>
     <script src="js/app/models/Negociacao.js"></script>
     <script>
-        var hoje = new Date();
-        var n1 = new Negociacao(hoje, 1, 100.00);
-        n1.quantidade = 10;
+        var n1 = new Negociacao(new Date(), 1, 100.00);
+
+        console.log(Object.isFrozen(n1)); // true se o objeto esta congelado
+
         console.log(n1.quantidade);
+        n1._quantidade = 1000; // acessando um membro privado!
+        console.log(n1.quantidade); // continua exibindo 1! É imutável!
     </script>
 </body>
 </html>
