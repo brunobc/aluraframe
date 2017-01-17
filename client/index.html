@@ -62,11 +62,10 @@
     <script src="js/index.js"></script>
     <script src="js/app/models/Negociacao.js"></script>
     <script>
-        var n1 = new Negociacao(new Date(), 1, 100.00);
-        console.log(n1.getData());
-        console.log(n1.getQuantidade());
-        console.log(n1.getValor());
-        console.log(n1.getVolume());
+        var hoje = new Date();
+        var n1 = new Negociacao(hoje, 1, 100.00);
+        n1.quantidade = 10;
+        console.log(n1.quantidade);
     </script>
 </body>
 </html>
