@@ -1,7 +1,7 @@
 class NegociacaoService {
 
     constructor() {
-        this.http = new HttpService();
+        this._http = new HttpService();
     }
 
     obterNegociacoesDaSemana() {
