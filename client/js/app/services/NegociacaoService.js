@@ -51,7 +51,8 @@ class NegociacaoService {
             this.obterNegociacoesDaSemanaRetrasada()
         ]).then(periodos => {
             return periodos
-              .reduce((dados, periodo) => dados.concat(periodo), []);
+              .reduce((dados, periodo) => dados.concat(periodo), [])
+              .map(dado => new Negociacao(new Date(dado.data), dado.quantidade, dado.valor ));
         }).catch(erro => {
             throw new Error(erro);
         });
