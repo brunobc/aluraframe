@@ -1,6 +1,6 @@
 class Mensagem {
 
-    constructor(texto = '') {
+    constructor(texto='') {
         this._texto = texto;
     }
 
@@ -12,4 +12,3 @@ class Mensagem {
         return this._texto = texto;
     }
 }
-//# sourceMappingURL=Mensagem.js.map

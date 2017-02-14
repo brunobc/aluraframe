@@ -10,15 +10,20 @@ class NegociacaoDao {
 
         return new Promise((resolve, reject) => {
 
-            let request = this._connection.transaction([this._store], "readwrite").objectStore(this._store).add(negociacao);
+            let request = this
+              ._connection
+              .transaction([this._store], "readwrite")
+              .objectStore(this._store)
+              .add(negociacao);
 
-            request.onsuccess = e => resolve();
+            request.onsuccess = (e) => resolve();
 
             request.onerror = e => {
 
                 console.log(e.target.error);
                 reject("Não foi possível incluir a negociação");
             };
+
         });
     }
 
@@ -26,7 +31,11 @@ class NegociacaoDao {
 
         return new Promise((resolve, reject) => {
 
-            let cursor = this._connection.transaction([this._store], "readwrite").objectStore(this._store).openCursor();
+            let cursor = this._connection
+              .transaction([this._store], "readwrite")
+              .objectStore(this._store)
+              .openCursor();
+
 
             let negociacoes = [];
 
@@ -45,6 +54,8 @@ class NegociacaoDao {
                 console.log(e.target.error);
                 reject(e.target.error.name);
             };
+
+
         });
     }
 
@@ -52,7 +63,10 @@ class NegociacaoDao {
 
         return new Promise((resolve, reject) => {
 
-            let request = this._connection.transaction([this._store], 'readwrite').objectStore(this._store).clear();
+            let request = this._connection
+              .transaction([this._store], 'readwrite')
+              .objectStore(this._store)
+              .clear();
 
             request.onsuccess = e => resolve('Negociações apagadas com sucesso');
 
@@ -60,7 +74,8 @@ class NegociacaoDao {
                 console.log(e.target.error);
                 reject('Não foi possível apagar as negociações');
             };
+
         });
+
     }
 }
-//# sourceMappingURL=NegociacaoDao.js.map
