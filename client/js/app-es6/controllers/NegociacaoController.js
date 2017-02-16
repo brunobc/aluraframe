@@ -1,4 +1,13 @@
-class NegociacaoController {
+import {Mensagem} from '../models/Mensagem';
+import {Negociacao} from '../models/Negociacao';
+import {ListaNegociacoes} from '../models/ListaNegociacoes';
+import {NegociacoesView} from '../views/NegociacoesView';
+import {MensagemView} from '../views/MensagemView';
+import {NegociacaoService} from '../services/NegociacaoService';
+import {DateHelper} from '../helpers/DateHelper';
+import {Bind} from '../helpers/Bind';
+
+export class NegociacaoController {
 
     constructor() {
         let $ = document.querySelector.bind(document);
@@ -28,18 +37,13 @@ class NegociacaoController {
         this._negociacaoService
           .lista()
           .then(negociacoes =>
-            negociacoes.forEach(dado =>
-              this._listaNegociacoes.adiciona(
-                new Negociacao(dado._data, dado._quantidade, dado._valor)
-              )))
-          .catch(erro => {
-              this._mensagem.texto = erro;
-          });
+            negociacoes.forEach(negociacao =>
+              this._listaNegociacoes.adiciona(negociacao)))
+          .catch(erro => this._mensagem.texto = erro);
 
         setInterval(() => {
-            console.log('Importando negociações');
             this.importaNegociacoes();
-        }, 3000)
+        }, 3000);
     }
 
     adiciona(event) {

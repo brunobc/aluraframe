@@ -1,4 +1,6 @@
-class NegociacaoDao {
+import {Negociacao} from '../models/Negociacao';
+
+export class NegociacaoDao {
 
     constructor(connection) {
 
@@ -43,7 +45,7 @@ class NegociacaoDao {
 
                 var cursor = e.target.result;
                 if (cursor) {
-                    negociacoes.push(cursor.value);
+                    negociacoes.push(new Negociacao(cursor._data, cursor._quantidade, cursor._valor));
                     cursor.continue();
                 } else {
                     resolve(negociacoes);
